@@ -5,7 +5,7 @@ title: Using the Abiquo cloud
 
 # Using the Abiquo cloud
 
-The Abiquo API uses high-level domain objects to perform the operations against the Abiquo API. This domain objects provide all necessary functionaliry to avoid consuming directly the REST api, although it can be used if needed. 
+The Abiquo API uses high-level domain objects to perform the operations against the Abiquo API. This domain objects provide all necessary functionality to avoid consuming directly the REST api, although it can be used if needed. 
 
 ## Creating the context
 
