@@ -13,6 +13,7 @@ Code hosting for jclouds is done on [GitHub](https://github.com/jclouds/jclouds)
    *  [Creating Providers with Maven Archetypes](/documentation/devguides/creating-providers-with-maven)
    *  [Provider testing](/documentation/devguides/provider-testing)
    *  [Contributing to Documentation](/documentation/devguides/contributing-to-documentation)
+   *  [Style Guide](/documentation/devguides/style-guide)
 
 ## References for Developers
 
