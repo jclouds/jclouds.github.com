@@ -37,11 +37,9 @@ The following document will help you get started, if you are unfamiliar with ecl
      *  Choose the directory your git clone created
      *  Choose all modules
   *  Setup TestNG plugin
-     *  Help, Install New Software
-     *  Add 
-       *  Name: testng
-       *  Location: `http://beust.com/eclipse`
-     *  You should see a checkbox near `TestNG` now in the `Available Software` view.  Check and click until done.
+     *  Help, Eclipse Marketplace
+     *  Find "testng" 
+     *  Click through installation.
 
 ## Running Tests
 
