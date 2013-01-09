@@ -6,44 +6,45 @@ title: Developer Setup instructions for Eclipse
 # jclouds Developer Setup instructions for Eclipse
 
 ## Introduction
-`Please do not check any eclipse related artifacts(e.g. .settings, .classpath, .project etc.) into git.` 
-
-The following document will help you get started, if you are unfamiliar with eclipse, maven, and git.
+The following document will help you get started, if you are unfamiliar with eclipse, maven, testng and git.
 
 ## Pre-requisites
-*  Eclipse 3.4 or higher
+*  Install Java 7
+*  Install [Apache Maven 3.0.x](http://maven.apache.org/download.cgi)
+*  Install [Git](http://git-scm.com/downloads)
+*  Install [Eclipse 3.4 or higher](http://www.eclipse.org/downloads/)
 
-## Setup
-###  Clone jclouds from git
-  *  If you are a collaborator, use: git clone git@github.com:jclouds/jclouds.git or 
-  	you can use the EGit plugin for eclipse - http://www.eclipse.org/egit/
-  *  Otherwise clone from read-only, or clone your fork of jclouds, see the 
-  	 [Developer's Guide](http://code.google.com/p/jclouds/wiki/DevelopersGuide) for more information.
 
-### Import into Eclipse
-1.  At the root directory where you checked out, execute `mvn clean install eclipse:eclipse -Dmaven.javadoc.skip=true -DdownloadSources=true -DdownloadJavadocs=true`
-  *  If the module you are working on is not in the default build list, change to that directory and execute `mvn eclipse:eclipse -DdownloadSources=true -DdownloadJavadocs=true`
+## Setup Eclipse
 
-1.  Open eclipse
-1.  Setup M2_REPO classpath variable
-  1.  Goto Eclipse Preferences &rarr; Java &rarr; Build Path &rarr; Classpath Variables
-  1.  New
-    *  Name: M2_REPO
-    *  Path: /path/to/.m2/repository
-      *  Ex. windows: it is in your user profile (`%USERPROFILE%`), like `c:\Documents and Settings\username\.m2\repository`
-      *  Ex. mac: it is in your home directory (`$HOME`). like `/Users/username/.m2/repository`
-1.  Import projects
-  1.  File, import, General, Existing projects into workspace
-  1.  Choose the directory your git clone created. ex. `/Users/username/git/jclouds`
-  1.  Choose all modules
+### Setup m2eclipse plugin
+1.  Open Eclipse
+2.  Go to `Help -> Eclipse Marketplace`
+3.  Find *m2eclipse*
+4.  Choose `Maven Integration for Eclipse` by clicking the `Install` button
+
 ### Setup TestNG plugin
-1.  Help, Eclipse Marketplace
-1.  Find "testng"
-1.  Click through installation
+1.  Open Eclipse
+2.  Go to `Help -> Eclipse Marketplace`
+3.  Find **testng**
+4.  Choose `TestNG for Eclipse` by clicking the `Install` button
 
-## Running Tests
+## Clone jclouds from Github
 
-Tests are created in TestNG, so make sure you have the eclipse plug-in installed.  
+* Go to [Github jclouds](https://github.com/jclouds/jclouds) and *fork* jclouds
+* Clone your jclouds's fork by using something like:
+	* `git clone https://github.com/username/jclouds.com.git` 
+	* `cd jclouds && mvn eclipse:eclipse -Dmaven.javadoc.skip=true -DdownloadSources=true`
+  	 
+## Import into Eclipse
+1.  Open Eclipse
+2.  `File -> Import … -> Maven -> Existing Maven projects
+3.  Choose as Root directory your local git repository folder, ex. `/Users/username/projects/jclouds`
+4.  Select all projects
+
+# Running Tests
+
+Tests are created in TestNG, so make sure you have the testNG plugin for Eclipse installed.  
 
 ## Live testing 
 
@@ -52,31 +53,19 @@ You'll key these on the provider name (ex. provider  is aws-s3, cloudfiles-us, a
 
 To implement this, open the test's Run Configurations and enter in the following into VM arguments-
 
-{% highlight text %}
+    -Dbasedir=. -Dtest.provider.identity=identity -Dtest.provider.credential=credential
 
--Dbasedir=. -Dtest.provider.identity=identity -Dtest.provider.credential=credential
+ex. for **vcloud**
 
-{% endhighlight %}
-
-ex. for vcloud
-
-{% highlight text %}
-
--Dbasedir=. -Dtest.vcloud.endpoint=https://vcloudserverilike/api -Dtest.vcloud.identity=user@org -Dtest.vcloud.credential=password
-
-{% endhighlight %}
+    -Dbasedir=. -Dtest.vcloud.endpoint=https://vcloudserverilike/api Dtest.vcloud.identity=user@org -Dtest.vcloud.credential=password
 
 ### Testing a BlobStore
 
 If you are testing a BlobStore, you will also need to pass the test initializer you can find in its pom.xml file
 
-ex. for aws-s3
+ex. for *aws-s3*
 
-{% highlight text %}
-
--Dbasedir=. -Dtest.aws-s3.identity=accesskey -Dtest.aws-s3.credential=secret -Dtest.initializers=org.jclouds.aws.s3.blobstore.integration.AWSS3TestInitializer
-
-{% endhighlight %}
+    -Dbasedir=. -Dtest.aws-s3.identity=accesskey -Dtest.aws-s3.credential=secret -Dtest.initializers=org.jclouds.aws.s3.blobstore.integration.AWSS3TestInitializer
 
 ## Ssh testing
 
@@ -87,14 +76,12 @@ Note that the destination must be a Unix-like host that at least contains a worl
 
 *  In Eclipse's Preferences open the section Run/Debug > String Substitution
 *  Create two new variables named:
-  *  `test.ssh.username` with the value of your ssh username
-  *  `test.ssh.password` with the value of your ssh password
+	*  `test.ssh.username` with the value of your ssh username
+	*  `test.ssh.password` with the value of your ssh password
 
 Then, for each test that uses ssh, open the test's Run Configurations and enter in the following into VM arguments:
 
-{% highlight text %}
--Dtest.ssh.host=localhost -Dtest.ssh.port=22 -Dtest.ssh.username=${test.ssh.username} -Dtest.ssh.password=${test.ssh.password}
-{% endhighlight %}
+    -Dtest.ssh.host=localhost -Dtest.ssh.port=22 -Dtest.ssh.username=${test.ssh.username} -Dtest.ssh.password=${test.ssh.password}
 
 *  note that you can replace {{{test.ssh.host}}} and {{{test.ssh.port}}} above if you are not connecting to localhost.
 
