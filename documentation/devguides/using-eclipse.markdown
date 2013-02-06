@@ -34,7 +34,7 @@ The following document will help you get started, if you are unfamiliar with ecl
 * Go to [Github jclouds](https://github.com/jclouds/jclouds) and *fork* jclouds
 * Clone your jclouds's fork by using something like:
 	* `git clone https://github.com/username/jclouds.com.git` 
-	* `cd jclouds && mvn eclipse:eclipse -Dmaven.javadoc.skip=true -DdownloadSources=true -DdownloadJavadocs=true`
+	* `cd jclouds && mvn eclipse:eclipse -Dmaven.javadoc.skip=true -DdownloadSources=true`
   	 
 ## Import into Eclipse
 1.  Open Eclipse
