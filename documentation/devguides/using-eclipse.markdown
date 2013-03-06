@@ -1,50 +1,55 @@
 ---
 layout: jclouds
-title: Developer Setup instructions for Eclipse
+title: Developer Setup Instructions for Eclipse
 ---
 
 # jclouds Developer Setup instructions for Eclipse
 
 ## Introduction
-The following document will help you get started, if you are unfamiliar with eclipse, maven, testng and git.
+This guide will help you set up and import your projects into Eclipse. It also includes instructions for running tests with TestNG, setting up a demo project, and cleaning up your build artifacts.
 
 ## Pre-requisites
-*  Install Java 7
+*  Install Java 7 [Oracle JDK edition](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or [OpenJDK](http://openjdk.java.net/install/index.html)
 *  Install [Apache Maven 3.0.x](http://maven.apache.org/download.cgi)
 *  Install [Git](http://git-scm.com/downloads)
 *  Install [Eclipse 3.4 or higher](http://www.eclipse.org/downloads/)
 
 
-## Setup Eclipse
+## Configure Eclipse
 
-### Setup m2eclipse plugin
+### Install the m2eclipse plugin
 1.  Open Eclipse
 2.  Go to `Help -> Eclipse Marketplace`
 3.  Find *m2eclipse*
-4.  Choose `Maven Integration for Eclipse` by clicking the `Install` button
+4.  `Install` the `Maven Integration for Eclipse WTP` plugin
 
-### Setup TestNG plugin
+### Install the TestNG plugin
 1.  Open Eclipse
 2.  Go to `Help -> Eclipse Marketplace`
-3.  Find **testng**
-4.  Choose `TestNG for Eclipse` by clicking the `Install` button
+3.  Find **TestNG**
+4.  `Install` the `TestNG for Eclipse` plugin
 
 ## Clone jclouds from Github
 
-* Go to [Github jclouds](https://github.com/jclouds/jclouds) and *fork* jclouds
+* Go to [Github](https://github.com/) and fork [jclouds/jclouds](https://github.com/jclouds/jclouds)
 * Clone your jclouds's fork by using something like:
-	* `git clone https://github.com/username/jclouds.com.git` 
-	* `cd jclouds && mvn eclipse:eclipse -Dmaven.javadoc.skip=true -DdownloadSources=true`
+	* `git clone https://github.com/username/jclouds.git`
+	* `cd jclouds`
+	* `mvn eclipse:eclipse -Dmaven.javadoc.skip=true -DdownloadSources=true`
+	
+If you are not familiar with the command line, you can use [Github for Mac](http://mac.github.com/) or [Github for Windows](http://windows.github.com/) to clone the `jclouds` project on your workstation.
+	
   	 
 ## Import into Eclipse
 1.  Open Eclipse
 2.  `File -> Import … -> Maven -> Existing Maven projects
 3.  Choose as Root directory your local git repository folder, ex. `/Users/username/projects/jclouds`
 4.  Select all projects
+5.  Click `Finish`
 
 # Running Tests
 
-Tests are created in TestNG, so make sure you have the testNG plugin for Eclipse installed.  
+Tests in Eclipse are created using TestNG. Please make sure you have installed the TestNG plugin for Eclipse before proceeding. If you are not familiar with testNG, please have a [quick overview](http://testng.org/doc/eclipse.html)
 
 ## Live testing 
 
@@ -67,11 +72,11 @@ ex. for *aws-s3*
 
     -Dbasedir=. -Dtest.aws-s3.identity=accesskey -Dtest.aws-s3.credential=secret -Dtest.initializers=org.jclouds.aws.s3.blobstore.integration.AWSS3TestInitializer
 
-## Ssh testing
+## ssh testing
 
-Ssh tests need access to an ssh host you have access to.  
-Note that this is only required for running pure SSH tests.  
-SSH indirectly used via a cloud will use the cloud credentials not the ones below. 
+ssh tests need access to an ssh host you have access to.  
+Note that this is only required for running pure ssh tests.  
+ssh indirectly used via a cloud will use the cloud credentials not the ones below. 
 Note that the destination must be a Unix-like host that at least contains a world readable /etc/passwd file.
 
 *  In Eclipse's Preferences open the section Run/Debug > String Substitution
@@ -94,7 +99,7 @@ For instance if you want to create a demo project in aws, you can do it with fol
 *  Change pom.xml from demos and add new module
 *  Change pom.xml of the new project (change names and classes)
 *  Add your code
-*  `mvn eclipse:clean `
+*  `mvn eclipse:clean`
 *  `mvn eclipse:eclipse -DskipTests=true`
 *  You  can import your project now in eclipse.
 
