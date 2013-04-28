@@ -13,7 +13,9 @@ title: Getting Started - The Rackspace Cloud
 1. [Your First Cloud Servers App](#servers)
 1. [Working with Cloud Block Storage](#volumes)
 1. [Working with Cloud Load Balancers](#loadbalancers)
+1. [Working with Cloud DNS](#dns)
 1. [Next Steps](#next)
+1. [jclouds in a JEE (J2EE) Environment](#jee)
 1. [Rackspace Cloud Providers](#providers)
 1. [Getting the Rackspace Binaries](#rax-binaries)
 1. [Support and Feedback](#support)
@@ -72,7 +74,7 @@ Cloud Files works with a portable layer in jclouds that is used to access featur
 1. The portable API for Cloud Files is org.jclouds.blobstore.BlobStore.
 1. The OpenStack API for Cloud Files is org.jclouds.openstack.swift.CommonSwiftClient.
 1. The Rackspace API for Cloud Files is org.jclouds.cloudfiles.CloudFilesClient. 
-1. You can find these APIs in the latest [Javadoc](http://demobox.github.com/jclouds-maven-site/latest/apidocs).
+1. You can find these APIs in the latest [Javadoc](http://javadocs.jclouds.cloudbees.net/).
 
 ### <a id="files-source"></a>The Source Code
 
@@ -112,7 +114,7 @@ Cloud Servers works with a portable layer in jclouds that is used to access feat
 
 1. The portable API for Cloud Servers is org.jclouds.compute.ComputeService.
 1. The OpenStack API for Cloud Servers is the org.jclouds.openstack.nova.v2_0.features.ServerApi. It's accessible via the org.jclouds.openstack.nova.v2_0.NovaApi.
-1. You can find these APIs in the latest [Javadoc](http://demobox.github.com/jclouds-maven-site/latest/apidocs).
+1. You can find these APIs in the latest [Javadoc](http://javadocs.jclouds.cloudbees.net/).
 
 ### <a id="servers-source"></a>The Source Code
 
@@ -159,7 +161,7 @@ Cloud Servers works with a portable layer in jclouds that is used to access feat
 Cloud Block Storage works with the OpenStack layer in jclouds that is used to access features common to all OpenStack Cinder block storage systems.
 
 1. The OpenStack API for Cloud Block Storage is the org.jclouds.openstack.cinder.v1.CinderApi. All other APIs for working with block storage are accessible via the CinderApi.
-1. You can find these APIs in the latest [Javadoc](http://demobox.github.com/jclouds-maven-site/latest/apidocs).
+1. You can find these APIs in the latest [Javadoc](http://javadocs.jclouds.cloudbees.net/).
 
 ### <a id="volumes-source"></a>The Source Code
 
@@ -207,8 +209,8 @@ Cloud Block Storage works with the OpenStack layer in jclouds that is used to ac
 
 Cloud Load Balancers works with the Rackspace layer in jclouds that is used to access features specific to the Rackspace load balancer system.
 
-1. The Rackspace API for Cloud Load Balancers is org.jclouds.rackspace.cloudloadbalancers.CloudLoadBalancersApi.  All other APIs for working with load balancers are accessible via the CloudLoadBalancersApi.
-1. You can find these APIs in the latest [Javadoc](http://demobox.github.com/jclouds-maven-site/latest/apidocs).
+1. The Rackspace API for Cloud Load Balancers is org.jclouds.rackspace.cloudloadbalancers.v1.CloudLoadBalancersApi.  All other APIs for working with load balancers are accessible via the CloudLoadBalancersApi.
+1. You can find these APIs in the latest [Javadoc](http://javadocs.jclouds.cloudbees.net/).
 
 ### <a id="lbs-source"></a>The Source Code
 
@@ -238,13 +240,54 @@ Cloud Load Balancers works with the Rackspace layer in jclouds that is used to a
       LoadBalancer{id=85901...}
       Go to http://166.78.34.87
 
+## <a id="dns"></a>Working with DNS
+### <a id="dns-intro"></a>Introduction
+
+[Cloud DNS](http://www.rackspace.com/cloud/public/dns/) automates and simplifies Domain Name System management. You can list, add, modify, and remove domains, subdomains, and records, as well as import and export domains and records. Enjoy migrations without the headaches. Using a BIND-9 formatted zone file, you can easily import and export domains and records. Our DNS infrastructure uses IP Anycast Routing.
+
+### <a id="dns-apis"></a>APIs
+
+Cloud DNS works with the Rackspace layer in jclouds that is used to access features specific to the Rackspace DNS system.
+
+1. The Rackspace API for Cloud DNS is org.jclouds.rackspace.clouddns.v1.CloudDNSApi.  All other APIs for working with DNS are accessible via the CloudDNSApi.
+1. You can find these APIs in the latest [Javadoc](http://javadocs.jclouds.cloudbees.net/).
+
+### <a id="dns-source"></a>The Source Code
+
+1. Create the directory hierarchy org/jclouds/examples/rackspace/clouddns/ in your jclouds directory.
+1. Create Java source files called CreateDomains.java and Constants.java in the directory above.
+1. You should now have a directory with the following structure:
+    * `jclouds/`
+        * `build.xml`
+        * `maven-ant-tasks.jar`
+        * `lib/`
+            * `*.jar`
+        * `org/jclouds/examples/rackspace/clouddns/`
+            * `CreateDomains.java`
+            * `Constants.java`
+1. Open CreateDomains.java for editing.
+1. Go to the example code [CreateDomains.java](https://github.com/jclouds/jclouds-examples/blob/master/rackspace/src/main/java/org/jclouds/examples/rackspace/clouddns/CreateDomains.java), read it over, and copy the code into your file.
+1. Open Constants.java for editing.
+1. Go to the example code [Constants.java](https://github.com/jclouds/jclouds-examples/blob/master/rackspace/src/main/java/org/jclouds/examples/rackspace/clouddns/Constants.java), read it over, and copy the code into your file.
+
+### <a id="dns-compile"></a>Compile and Run
+
+    javac -classpath ".:lib/*" org/jclouds/examples/rackspace/clouddns/CreateDomains.java
+    
+    java -classpath ".:lib/*" org.jclouds.examples.rackspace.clouddns.CreateDomains myUsername myApiKey
+
+    Create Domains
+      Domain{id=3695347, name=jclouds-example.com, ...}
+      Domain{id=3695348, name=alt-jclouds-example.com, ...}
+      
 ## <a id="jee"></a>jclouds in a JEE (J2EE) Environment
 
 Setting up jclouds to work in a JEE Environment is easy. You simply need to ensure that jclouds won't spawn any of its own threads. You can do this by using the ExecutorServiceModule when building your Context.
 
 An example code snippet.
 
-```java
+<pre>
+{% highlight java %}
 import static com.google.common.util.concurrent.MoreExecutors.sameThreadExecutor; 
 
 import org.jclouds.compute.ComputeService;
@@ -267,7 +310,8 @@ public class MyJEEClass {
   
   ...
 } 
-```
+{% endhighlight %}
+</pre>
 
 ## <a id="next"></a>Next Steps
 
@@ -275,7 +319,7 @@ public class MyJEEClass {
 1. When you're ready to publish some web pages on the internet, try the [CloudFilesPublish.java](https://github.com/jclouds/jclouds-examples/blob/master/rackspace/src/main/java/org/jclouds/examples/rackspace/cloudfiles/CloudFilesPublish.java), [CloudServersPublish.java](https://github.com/jclouds/jclouds-examples/blob/master/rackspace/src/main/java/org/jclouds/examples/rackspace/cloudservers/CloudServersPublish.java), or [CreateLoadBalancerWithNewServers.java](https://github.com/jclouds/jclouds-examples/blob/master/rackspace/src/main/java/org/jclouds/examples/rackspace/cloudloadbalancers/CreateLoadBalancerWithNewServers.java) examples.
 1. Change the examples to do different things that you want to do.
 1. After running some examples, compare the output with what you see in the [Cloud Control Panel](https://mycloud.rackspace.com/).
-1. Browse the [documentation](http://www.jclouds.org/documentation/) and have a look at the latest [Javadoc](http://demobox.github.com/jclouds-maven-site/latest/apidocs).
+1. Browse the [documentation](http://www.jclouds.org/documentation/) and have a look at the latest [Javadoc](http://javadocs.jclouds.cloudbees.net/).
 1. Return to the [Installation Guide](http://www.jclouds.org/documentation/userguide/installation-guide/) and have a look at the different ways to integrate jclouds with your project.
 1. Join the [jclouds mailing list](https://groups.google.com/forum/?fromgroups#!forum/jclouds) or maybe even the [jclouds developer mailing list](https://groups.google.com/forum/?fromgroups#!forum/jclouds-dev).
 
@@ -291,6 +335,8 @@ This is a list of providers that work with the Rackspace Cloud that you can use 
 * `"rackspace-cloudblockstorage-uk"`
 * `"rackspace-cloudloadbalancers-us"`
 * `"rackspace-cloudloadbalancers-uk"`
+* `"rackspace-clouddns-us"`
+* `"rackspace-clouddns-uk"`
 
 ## <a id="rax-binaries"></a>Getting the Rackspace Binaries
 
@@ -300,7 +346,8 @@ Read over the [Installation Guide](/documentation/userguide/installation-guide).
 
 For Maven, here is an example pom.xml file. To get the latest JARs simply replace X.X.X with the latest jclouds version number. To use the Rackspace Cloud UK add or update the dependencies with 'uk' on the end.
 
-```xml
+<pre>
+{% highlight xml %}
 <project>
   <modelVersion>4.0.0</modelVersion>
 
@@ -340,14 +387,21 @@ For Maven, here is an example pom.xml file. To get the latest JARs simply replac
       <artifactId>rackspace-cloudloadbalancers-us</artifactId>
       <version>X.X.X</version>
     </dependency>
+    <dependency>
+      <groupId>org.jclouds.provider</groupId>
+      <artifactId>rackspace-clouddns-us</artifactId>
+      <version>X.X.X</version>
+    </dependency>
 </project>
-```
+{% endhighlight %}
+</pre>
 
 ### <a id="rax-ant"></a>Ant
 
 For Ant, here is an example build.xml file. To get the latest JARs simply replace X.X.X with the latest jclouds version number. To use the Rackspace Cloud UK add or update the dependencies with 'uk' on the end.
 
-```xml
+<pre>
+{% highlight xml %}
 <project default="sync-lib" xmlns:artifact="urn:maven-artifact-ant" >
   <target name="sync-lib" depends="initmvn">
     <delete dir="lib" />
@@ -359,6 +413,7 @@ For Ant, here is an example build.xml file. To get the latest JARs simply replac
       <dependency groupId="org.jclouds.provider" artifactId="rackspace-cloudservers-us" version="X.X.X" />
       <dependency groupId="org.jclouds.provider" artifactId="rackspace-cloudblockstorage-us" version="X.X.X" />
       <dependency groupId="org.jclouds.provider" artifactId="rackspace-cloudloadbalancers-us" version="X.X.X" />
+      <dependency groupId="org.jclouds.provider" artifactId="rackspace-clouddns-us" version="X.X.X" />
     </artifact:dependencies>
     <copy todir="lib" verbose="true">
       <fileset refid="jclouds.fileset"/>
@@ -375,7 +430,8 @@ For Ant, here is an example build.xml file. To get the latest JARs simply replac
              classpathref="maven-ant-tasks.classpath"/>
   </target>
 </project>
-```
+{% endhighlight %}
+</pre>
 
 ## <a id="support"></a>Support and Feedback
 
