@@ -1,6 +1,3 @@
-{% capture lvl %}{{ page.url | append:'index.html' | split:'/' | size }}{% endcapture %}
-{% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
@@ -9,7 +6,7 @@
   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 
   <!-- **** jclouds stylesheet **** -->
-  <link rel="stylesheet" type="text/css" href="{{ relative }}style/style.css"/>
+  <link rel="stylesheet" type="text/css" href="./style/style.css"/>
 
   <!-- **** Google Fonts **** -->
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
@@ -34,20 +31,20 @@
 <body>
   <div id="main">
     <div id="header">
-		<span><a href="/documentation/gettingstarted/">Getting Started</a></span>
-		<span><a href="/documentation/userguide/">Provider User Guides</a></span>
-		<span><a href="/documentation/releasenotes/">Release Notes</a></span>
+		<span><a href="./documentation/gettingstarted/">Getting Started</a></span>
+		<span><a href="./documentation/userguide/">Provider User Guides</a></span>
+		<span><a href="./documentation/releasenotes/">Release Notes</a></span>
 	</div>
 
 	<div id="cloud_section">
 	    <div id="cloud_logo">
-			<img src="{{ relative }}style/fullsizejcloudslogo.jpg"></img>
+			<img src="./style/fullsizejcloudslogo.jpg"></img>
 			<h2>Cloud interfaces, simplified.</h2>
 	    </div>
 		<div id="who_what_how">
-			<h1><a href="/documentation/gettingstarted/what-is-jclouds/">What is jclouds?</a></h1>
-			<h1><a href="/documentation/reference/apps-that-use-jclouds/">Who uses jclouds?</a></h1>
-			<h1><a href="/documentation/devguides/">How can I help?</a></h1>
+			<h1><a href="./documentation/gettingstarted/what-is-jclouds/">What is jclouds?</a></h1>
+			<h1><a href="./documentation/reference/apps-that-use-jclouds/">Who uses jclouds?</a></h1>
+			<h1><a href="./documentation/devguides/">How can I help?</a></h1>
 		</div>
                 <div>
                   <img src="http://incubator.apache.org/images/egg-logo.png"/>
