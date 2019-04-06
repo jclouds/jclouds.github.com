@@ -28,6 +28,8 @@ The wire log is used to log all data transmitted to and from servers when execut
 
 Because the content of HTTP requests is usually less important for debugging than the HTTP headers, these two types of data have been separated into different wire logs.
 
+NOTE: Wire log appender is `jclouds.wire` and headers log appender is `jclouds.headers`.
+
 ## Usage
 
 You enable logging when you are building your Context.
